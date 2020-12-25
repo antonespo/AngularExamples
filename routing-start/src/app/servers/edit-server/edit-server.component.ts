@@ -22,15 +22,15 @@ export class EditServerComponent implements OnInit {
     this.server = this.serversService.getServer(1);
     this.serverName = this.server.name;
     this.serverStatus = this.server.status;
-    this.route.params.subscribe((params) => {
-      console.log(params["id"]);
-    });
-    this.route.queryParams.subscribe((params) => {
-      console.log(params);
-    });
-    this.route.fragment.subscribe((params) => {
-      console.log(params);
-    });
+    // this.route.params.subscribe((params) => {
+    //   console.log(params["id"]);
+    // });
+    // this.route.queryParams.subscribe((params) => {
+    //   console.log(params);
+    // });
+    // this.route.fragment.subscribe((params) => {
+    //   console.log(params);
+    // });
   }
 
   onUpdateServer() {
