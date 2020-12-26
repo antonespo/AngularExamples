@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { AuthGuardService } from "./auth-guard.service";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
@@ -8,6 +8,7 @@ import { ServerComponent } from "./servers/server/server.component";
 import { ServersComponent } from "./servers/servers.component";
 import { UserComponent } from "./users/user/user.component";
 import { UsersComponent } from "./users/users.component";
+import { LoginComponent } from "./login/login.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
@@ -19,6 +20,8 @@ const appRoutes: Routes = [
   {
     path: "servers",
     component: ServersComponent,
+    // canActivate: [AuthGuardService],
+    canActivateChild: [AuthGuardService],
     children: [
       { path: ":id", component: ServerComponent },
       { path: ":id/edit", component: EditServerComponent },

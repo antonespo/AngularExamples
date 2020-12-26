@@ -1,0 +1,8 @@
+<div *ngIf="!loading">
+  <button *ngIf="loggedIn" class="btn btn-primary" (click)="onLogout()">
+    Logout
+  </button>
+  <button *ngIf="!loggedIn" class="btn btn-primary" (click)="onLogin()">
+    Login
+  </button>
+</div>
