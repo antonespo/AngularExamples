@@ -13,6 +13,7 @@ import { ServerComponent } from "./servers/server/server.component";
 import { ServersService } from "./servers/servers.service";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { LoginComponent } from './login/login.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { LoginComponent } from './login/login.component';
     ServerComponent,
     NotFoundComponent,
     LoginComponent,
+    ErrorPageComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [ServersService],

@@ -10,6 +10,7 @@ import { UserComponent } from "./users/user/user.component";
 import { UsersComponent } from "./users/users.component";
 import { LoginComponent } from "./login/login.component";
 import { CanDeactivateGuardService } from "./servers/edit-server/can-deactivate-guard.service";
+import { ErrorPageComponent } from "./error-page/error-page.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
@@ -32,7 +33,17 @@ const appRoutes: Routes = [
       },
     ],
   },
-  { path: "not-found", component: NotFoundComponent },
+  {
+    path: "unknown",
+    component: ErrorPageComponent,
+    data: { message: "This product is unknown!" },
+  },
+  {
+    path: "not-found",
+    component: ErrorPageComponent,
+    data: { message: "Page not found!" },
+  },
+  // { path: "not-found", component: NotFoundComponent },
   {
     path: "**",
     redirectTo: "/not-found",
