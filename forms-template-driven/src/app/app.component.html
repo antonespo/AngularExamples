@@ -11,6 +11,7 @@
               class="form-control"
               ngModel
               name="username"
+              required
             />
           </div>
           <button class="btn btn-default" type="button">
@@ -24,6 +25,8 @@
               class="form-control"
               ngModel
               name="email"
+              required
+              email
             />
           </div>
         </div>
@@ -34,7 +37,9 @@
             <option value="teacher">Your first teacher?</option>
           </select>
         </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">
+          Submit
+        </button>
       </form>
     </div>
   </div>
