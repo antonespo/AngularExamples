@@ -10,6 +10,12 @@
             formControlName="username"
             class="form-control"
           />
+          <div
+            class="alert alert-danger"
+            *ngIf="username.touched && !username.valid"
+          >
+            Username is required
+          </div>
         </div>
         <div class="form-group">
           <label for="email">email</label>
@@ -19,6 +25,9 @@
             formControlName="email"
             class="form-control"
           />
+        </div>
+        <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+          Email is not valid
         </div>
         <div class="radio" *ngFor="let gender of genders">
           <label>
