@@ -1,5 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
+import { EmailValidator } from "./email.validator";
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from "@angular/forms";
 
 @Component({
   selector: "app-root",
@@ -8,13 +15,21 @@ import { FormArray, FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class AppComponent implements OnInit {
   genders = ["male", "female"];
+  forbiddenUsernames = ["Chris", "Anna"];
   signupForm: FormGroup;
 
   ngOnInit() {
     this.signupForm = new FormGroup({
       userData: new FormGroup({
-        username: new FormControl(null, Validators.required),
-        email: new FormControl(null, [Validators.required, Validators.email]),
+        username: new FormControl(null, [
+          Validators.required,
+          this.forbiddenNames.bind(this),
+        ]),
+        email: new FormControl(
+          null,
+          [Validators.required, Validators.email],
+          EmailValidator.forbiddenEmails
+        ),
       }),
       gender: new FormControl("male"),
       hobbies: new FormArray([]),
@@ -40,5 +55,12 @@ export class AppComponent implements OnInit {
 
   get email() {
     return this.signupForm.get("userData.email");
+  }
+
+  forbiddenNames(control: FormControl): ValidationErrors | null {
+    if (this.forbiddenUsernames.indexOf(control.value) !== -1) {
+      return { nameIsForbidden: true };
+    }
+    return null;
   }
 }
