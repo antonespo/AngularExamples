@@ -2,32 +2,37 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            formControlName="username"
-            class="form-control"
-          />
-          <div
-            class="alert alert-danger"
-            *ngIf="username.touched && !username.valid"
-          >
-            Username is required
+        <div formGroupName="userData">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              formControlName="username"
+              class="form-control"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="username.touched && !username.valid"
+            >
+              Username is required
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="email">email</label>
-          <input
-            type="text"
-            id="email"
-            formControlName="email"
-            class="form-control"
-          />
-        </div>
-        <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
-          Email is not valid
+          <div class="form-group">
+            <label for="email">email</label>
+            <input
+              type="text"
+              id="email"
+              formControlName="email"
+              class="form-control"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="email.touched && !email.valid"
+            >
+              Email is not valid
+            </div>
+          </div>
         </div>
         <div class="radio" *ngFor="let gender of genders">
           <label>
@@ -35,6 +40,24 @@
               gender
             }}
           </label>
+        </div>
+        <div formArrayName="hobbies">
+          <h4>
+            Your Hobbies
+            <button
+              class="btn btn-default"
+              type="button"
+              (click)="onAddHobby()"
+            >
+              Add Hobby
+            </button>
+            <div
+              class="form-group"
+              *ngFor="let hobbyControl of getControls(); let i = index"
+            >
+              <input type="text" class="form-control" [formControlName]="i" />
+            </div>
+          </h4>
         </div>
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
